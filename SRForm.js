@@ -24,10 +24,17 @@ Ext.define('MyApp.view.SRForm', {
     },
 
     openCWindow: function() {
-        let cWin = Ext.create('MyApp.view.CWindow');
+        let me = this, cWin = Ext.create('MyApp.view.CWindow',{
+            rec: "classy"
+        });
+        cWin.on('updateClass', me.updateClassy, me);
         cWin.show();
 
         // Add the postMessage listener
         window.addEventListener('message', cWin.messageHandler);
-    }
+    },
+    updateClassy: function(classx) {
+        var me = this, cj;
+
+        cj = classx.classxJson;
 });
